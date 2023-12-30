@@ -45,14 +45,6 @@ const reactRefreshRuntimeEntry = require.resolve("react-refresh/runtime");
 const reactRefreshWebpackPluginRuntimeEntry = require.resolve(
   "@pmmmwh/react-refresh-webpack-plugin"
 );
-const babelRuntimeEntry = require.resolve("babel-preset-react-app");
-const babelRuntimeEntryHelpers = require.resolve(
-  "@babel/runtime/helpers/esm/assertThisInitialized",
-  { paths: [babelRuntimeEntry] }
-);
-const babelRuntimeRegenerator = require.resolve("@babel/runtime/regenerator", {
-  paths: [babelRuntimeEntry],
-});
 
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
@@ -341,9 +333,6 @@ module.exports = function (webpackEnv) {
           paths.appPackageJson,
           reactRefreshRuntimeEntry,
           reactRefreshWebpackPluginRuntimeEntry,
-          babelRuntimeEntry,
-          babelRuntimeEntryHelpers,
-          babelRuntimeRegenerator,
         ]),
       ],
     },
@@ -437,14 +426,13 @@ module.exports = function (webpackEnv) {
                 // side of caution.
                 // We remove this when the user ejects because the default
                 // is sane and uses Babel options. Instead of options, we use
-                // the react-scripts and babel-preset-react-app versions.
+                // the react-scripts version.
                 cacheIdentifier: getCacheIdentifier(
                   isEnvProduction
                     ? "production"
                     : isEnvDevelopment && "development",
                   [
                     "babel-plugin-named-asset-import",
-                    "babel-preset-react-app",
                     "react-dev-utils",
                     "react-scripts",
                   ]
@@ -474,12 +462,6 @@ module.exports = function (webpackEnv) {
                 babelrc: false,
                 configFile: false,
                 compact: false,
-                presets: [
-                  [
-                    require.resolve("babel-preset-react-app/dependencies"),
-                    { helpers: true },
-                  ],
-                ],
                 cacheDirectory: true,
                 // See #6846 for context on why cacheCompression is disabled
                 cacheCompression: false,
@@ -490,7 +472,6 @@ module.exports = function (webpackEnv) {
                     : isEnvDevelopment && "development",
                   [
                     "babel-plugin-named-asset-import",
-                    "babel-preset-react-app",
                     "react-dev-utils",
                     "react-scripts",
                   ]
