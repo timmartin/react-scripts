@@ -410,10 +410,12 @@ module.exports = function (webpackEnv) {
               options: {
                 presets: [
                   [
+                    require.resolve("@babel/preset-react"),
                     {
                       runtime: hasJsxRuntime ? "automatic" : "classic",
                     },
                   ],
+                  require.resolve("@babel/preset-typescript"),
                 ],
                 // @remove-on-eject-begin
                 babelrc: false,
