@@ -1,6 +1,6 @@
 {
   "name": "@timmartin2/react-scripts",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "Fork of react-scripts to facillitate migrating away from create-react-app",
   "repository": {
     "type": "git",
